@@ -1,0 +1,5 @@
+Hey bro, for this page I’m not looking for a traditional website layout. I want it to feel more like a clean, high end landing experience that’s built to convert couples who are already interested in wedding photography and videography. The overall vibe should be cinematic, minimal, and premium, with a strong focus on showcasing our work in a way that feels intentional rather than cluttered. Think smooth flow from top to bottom where people immediately see the quality, build trust quickly, and feel something before anything else.
+
+The page should naturally guide users toward enquiring without overwhelming them with too many options or packages. We want to position ourselves as a seamless photo and video team rather than a studio with complicated offerings. A2Z is a good reference in terms of scale, but we want to feel more refined, more modern, and less busy. As long as the page makes it easy to understand what we offer and encourages action early, I’m happy for you to take creative control on the layout and design.
+
+https://www.a2z.com.au/
