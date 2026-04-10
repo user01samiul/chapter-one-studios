@@ -12,7 +12,6 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     names: "",
     email: "",
     date: "",
-    venue: "",
     message: "",
   });
 
@@ -83,8 +82,9 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           <h2 className="font-serif text-2xl sm:text-3xl text-cream leading-[1.2] mb-2">
             Begin your <span className="italic text-gold">chapter</span>
           </h2>
-          <p className="text-foreground/60 text-sm sm:text-base font-sans font-light">
-            Share a few details and we&apos;ll be in touch within 24 hours.
+          <p className="text-cream-dim text-base font-sans font-light leading-relaxed">
+            Tell us a little about your day and we&apos;ll get back to you
+            within 24 hours.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               value={formData.names}
               onChange={handleChange}
               placeholder="Your names"
-              className="w-full bg-noir-light border border-foreground/15 px-4 py-4 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans !rounded-none"
+              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
             />
           </div>
           <div>
@@ -107,25 +107,17 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email address"
-              className="w-full bg-noir-light border border-foreground/15 px-4 py-4 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans !rounded-none"
+              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div>
             <input
               type="text"
               name="date"
               value={formData.date}
               onChange={handleChange}
               placeholder="Wedding date"
-              className="w-full bg-noir-light border border-foreground/15 px-4 py-4 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans !rounded-none"
-            />
-            <input
-              type="text"
-              name="venue"
-              value={formData.venue}
-              onChange={handleChange}
-              placeholder="Venue"
-              className="w-full bg-noir-light border border-foreground/15 px-4 py-4 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans !rounded-none"
+              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
             />
           </div>
           <div>
@@ -135,15 +127,17 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               onChange={handleChange}
               rows={3}
               placeholder="Tell us about your day..."
-              className="w-full bg-noir-light border border-foreground/15 px-4 py-4 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans resize-none !rounded-none"
+              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
-          >
-            Send Enquiry
-          </button>
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
+            >
+              Send Enquiry
+            </button>
+          </div>
         </form>
       </div>
     </div>

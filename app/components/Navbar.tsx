@@ -9,6 +9,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { open } = useEnquiryModal();
+  const desktopLinkClass = `text-[13px] tracking-[0.2em] uppercase transition-colors duration-300 font-sans ${
+    scrolled
+      ? "text-foreground/65 hover:text-foreground"
+      : "text-white/78 hover:text-white"
+  }`;
+  const mobileToggleBarClass = scrolled ? "bg-foreground" : "bg-white";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -40,22 +46,13 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-10">
-          <Link
-            href="#work"
-            className="text-[13px] tracking-[0.2em] uppercase text-foreground/65 hover:text-foreground transition-colors duration-300 font-sans"
-          >
+          <Link href="#work" className={desktopLinkClass}>
             Portfolio
           </Link>
-          <Link
-            href="#film"
-            className="text-[13px] tracking-[0.2em] uppercase text-foreground/65 hover:text-foreground transition-colors duration-300 font-sans"
-          >
+          <Link href="#film" className={desktopLinkClass}>
             Film
           </Link>
-          <Link
-            href="#about"
-            className="text-[13px] tracking-[0.2em] uppercase text-foreground/65 hover:text-foreground transition-colors duration-300 font-sans"
-          >
+          <Link href="#about" className={desktopLinkClass}>
             About
           </Link>
           <button
@@ -73,13 +70,13 @@ export default function Navbar() {
           aria-label="Menu"
         >
           <span
-            className={`w-6 h-[1.5px] bg-foreground transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`}
+            className={`w-6 h-[1.5px] ${mobileToggleBarClass} transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`}
           />
           <span
-            className={`w-6 h-[1.5px] bg-foreground transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
+            className={`w-6 h-[1.5px] ${mobileToggleBarClass} transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`w-6 h-[1.5px] bg-foreground transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`}
+            className={`w-6 h-[1.5px] ${mobileToggleBarClass} transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`}
           />
         </button>
       </div>
