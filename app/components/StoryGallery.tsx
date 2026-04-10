@@ -19,6 +19,10 @@ const TRIO_1_ITEMS = TRIO_1.map((frameIndex, index) => ({
 }));
 const PAIR_BIG = 7;
 const PAIR_SMALL = 2;
+const PAIR_META = [
+  "The first look, between flowers",
+  "A tender moment under the veil",
+];
 const DUO = [4, 10];
 const TRIO_2 = [8, 13, 11];
 const HERO_CLOSE = 12;
@@ -158,24 +162,36 @@ export default function StoryGallery() {
       {/* ── 3. Asymmetric big + small ──────────────────────────── */}
       <RevealOnScroll>
         <div className="max-w-[1500px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-12 gap-4 sm:gap-6">
-            <div className="col-span-12 md:col-span-8 relative aspect-[4/3] overflow-hidden bg-noir-light group">
-              <Image
-                src={FRAMES[PAIR_BIG].src}
-                alt={FRAMES[PAIR_BIG].alt}
-                fill
-                sizes="(min-width: 768px) 66vw, 100vw"
-                className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
-              />
-            </div>
-            <div className="col-span-12 md:col-span-4 relative aspect-[3/4] overflow-hidden bg-noir-light group">
-              <Image
-                src={FRAMES[PAIR_SMALL].src}
-                alt={FRAMES[PAIR_SMALL].alt}
-                fill
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
-              />
+          <div className="rounded-sm border border-gold/20 bg-noir-light/35 p-4 sm:p-6">
+            <div className="grid grid-cols-12 gap-4 sm:gap-6 items-end">
+              <div className="col-span-12 md:col-span-7 group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)]">
+                <div className="relative aspect-5/4 overflow-hidden bg-noir-light">
+                  <Image
+                    src={FRAMES[PAIR_BIG].src}
+                    alt={FRAMES[PAIR_BIG].alt}
+                    fill
+                    sizes="(min-width: 768px) 58vw, 100vw"
+                    className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="pt-3 px-1 text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
+                  {PAIR_META[0]}
+                </div>
+              </div>
+              <div className="col-span-12 md:col-span-5 group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] md:-rotate-1 transition-transform duration-500 ease-out hover:rotate-0">
+                <div className="relative aspect-4/5 overflow-hidden bg-noir-light">
+                  <Image
+                    src={FRAMES[PAIR_SMALL].src}
+                    alt={FRAMES[PAIR_SMALL].alt}
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="pt-3 px-1 text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
+                  {PAIR_META[1]}
+                </div>
+              </div>
             </div>
           </div>
         </div>
