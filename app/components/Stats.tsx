@@ -63,7 +63,7 @@ function AnimatedNumber({
 
 export default function Stats() {
   return (
-    <section className="relative py-20 sm:py-28 px-6 bg-noir border-y border-foreground/[0.08]">
+    <section className="relative py-10 sm:py-14 px-6 bg-noir">
       <div className="max-w-[1100px] mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
           {stats.map((stat, i) => (

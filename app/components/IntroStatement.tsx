@@ -2,7 +2,7 @@ import RevealOnScroll from "./RevealOnScroll";
 
 export default function IntroStatement() {
   return (
-    <section className="relative py-32 sm:py-44 px-6 bg-noir">
+    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 px-6 bg-noir">
       <div className="max-w-3xl mx-auto text-center">
         <RevealOnScroll>
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cream leading-[1.15] tracking-tight">
