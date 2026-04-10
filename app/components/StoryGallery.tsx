@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { FRAMES } from "../data/media";
+import MobileContactSheetSlider from "./MobileContactSheetSlider";
 import PhotoRibbon from "./PhotoRibbon";
 import RevealOnScroll from "./RevealOnScroll";
 
@@ -12,6 +13,10 @@ const TRIO_1_META = [
   "ROLL 05 / FRAME 03",
   "ROLL 05 / FRAME 19",
 ];
+const TRIO_1_ITEMS = TRIO_1.map((frameIndex, index) => ({
+  frameIndex,
+  meta: TRIO_1_META[index],
+}));
 const PAIR_BIG = 7;
 const PAIR_SMALL = 2;
 const DUO = [4, 10];
@@ -122,8 +127,15 @@ export default function StoryGallery() {
               <span>Contact Sheet</span>
               <span>Captured in-between</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-              {TRIO_1.map((i, k) => (
+            <MobileContactSheetSlider
+              slides={TRIO_1_ITEMS.map(({ frameIndex, meta }) => ({
+                src: FRAMES[frameIndex].src,
+                alt: FRAMES[frameIndex].alt,
+                meta,
+              }))}
+            />
+            <div className="hidden sm:grid sm:grid-cols-3 gap-4 sm:gap-6">
+              {TRIO_1_ITEMS.map(({ frameIndex, meta }, k) => (
                 <div
                   key={k}
                   className={`group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out ${
@@ -136,15 +148,15 @@ export default function StoryGallery() {
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-noir-light">
                     <Image
-                      src={FRAMES[i].src}
-                      alt={FRAMES[i].alt}
+                      src={FRAMES[frameIndex].src}
+                      alt={FRAMES[frameIndex].alt}
                       fill
                       sizes="(min-width: 640px) 33vw, 100vw"
                       className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                     />
                   </div>
                   <div className="pt-3 px-1 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
-                    <span>{TRIO_1_META[k]}</span>
+                    <span>{meta}</span>
                   </div>
                 </div>
               ))}
