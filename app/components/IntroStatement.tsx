@@ -1,6 +1,11 @@
+"use client";
+
+import { useEnquiryModal } from "./EnquiryModalProvider";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function IntroStatement() {
+  const { open } = useEnquiryModal();
+
   return (
     <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 px-6 bg-noir">
       <div className="max-w-3xl mx-auto text-center">
@@ -23,12 +28,13 @@ export default function IntroStatement() {
 
         <RevealOnScroll delay={0.35}>
           <div className="mt-10 sm:mt-14">
-            <a
-              href="#enquire"
+            <button
+              type="button"
+              onClick={open}
               className="inline-block text-[13px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground px-10 py-4 transition-all duration-500 font-sans"
             >
               Enquire Now
-            </a>
+            </button>
           </div>
         </RevealOnScroll>
       </div>

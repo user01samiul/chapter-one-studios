@@ -86,15 +86,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Counter pill — reference-style signal of a deeper archive */}
-      <div className="absolute top-24 right-6 sm:top-28 sm:right-12 md:right-20 z-10 hidden sm:block">
-        <div className="counter-pill counter-pill--on-dark">
-          <span className="font-serif italic">01</span>
-          <span className="counter-pill__bar" aria-hidden="true" />
-          <span className="font-serif italic">13</span>
-        </div>
-      </div>
-
       {/* Scroll indicator */}
       <div className="absolute bottom-10 right-6 sm:right-12 md:right-20 flex flex-col items-center gap-3 z-10">
         <span
