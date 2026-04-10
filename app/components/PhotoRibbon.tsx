@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import { useEffect } from "react";
 import { FRAMES } from "../data/media";
 import RevealOnScroll from "./RevealOnScroll";
 
@@ -107,13 +107,8 @@ export default function PhotoRibbon() {
               : "w-[86vw] sm:w-[52vw] md:w-[38vw] lg:w-[30vw]";
             const timeCode = getTimeCode(i);
             return (
-              <div
-                key={`${frame.src}-${i}`}
-                className={`shrink-0 ${width}`}
-              >
-                <div
-                  className="group bg-[#f5efe4] p-2 pb-3 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)]"
-                >
+              <div key={`${frame.src}-${i}`} className={`shrink-0 ${width}`}>
+                <div className="group bg-[#f5efe4] p-2 pb-3 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)]">
                   <div
                     className={`relative ${isPortrait ? "aspect-4/5" : "aspect-3/2"} overflow-hidden bg-noir-light`}
                   >

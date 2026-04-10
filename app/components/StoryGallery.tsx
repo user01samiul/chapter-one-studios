@@ -24,6 +24,10 @@ const PAIR_META = [
   "A tender moment under the veil",
 ];
 const DUO = [4, 10];
+const DUO_META = [
+  "Pausing together by the bridge",
+  "Stillness beneath the great tree",
+];
 const TRIO_2 = [8, 13, 11];
 const HERO_CLOSE = 12;
 
@@ -210,21 +214,30 @@ export default function StoryGallery() {
       {/* ── 5. Two-landscape strip ─────────────────────────────── */}
       <RevealOnScroll>
         <div className="max-w-[1500px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {DUO.map((i, k) => (
-              <div
-                key={k}
-                className="relative aspect-[5/4] overflow-hidden bg-noir-light group"
-              >
-                <Image
-                  src={FRAMES[i].src}
-                  alt={FRAMES[i].alt}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-            ))}
+          <div className="rounded-sm border border-gold/20 bg-noir-light/35 p-4 sm:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              {DUO.map((i, k) => (
+                <div
+                  key={k}
+                  className={`group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out ${
+                    k === 0 ? "md:-rotate-1" : "md:rotate-1"
+                  } hover:rotate-0`}
+                >
+                  <div className="relative aspect-5/4 overflow-hidden bg-noir-light">
+                    <Image
+                      src={FRAMES[i].src}
+                      alt={FRAMES[i].alt}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="pt-3 px-1 text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
+                    {DUO_META[k]}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </RevealOnScroll>
