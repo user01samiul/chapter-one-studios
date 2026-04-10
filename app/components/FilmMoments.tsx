@@ -1,43 +1,25 @@
 "use client";
 
-import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FILMS } from "../data/media";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function FilmMoments() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: "start",
-    containScroll: "trimSnaps",
-  });
   const [playingIdx, setPlayingIdx] = useState<number | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const handler = () => {
-      const idx = emblaApi.selectedScrollSnap();
-      setPlayingIdx(null);
-      videoRefs.current.forEach((v, i) => {
-        if (v && i !== idx) {
-          v.pause();
-          v.currentTime = 0;
-        }
-      });
-    };
-    emblaApi.on("select", handler);
-    emblaApi.on("reInit", handler);
-    return () => {
-      emblaApi.off("select", handler);
-      emblaApi.off("reInit", handler);
-    };
-  }, [emblaApi]);
 
   const handlePlay = (i: number) => {
     const v = videoRefs.current[i];
     if (!v) return;
+
+    videoRefs.current.forEach((item, idx) => {
+      if (item && idx !== i) {
+        item.pause();
+        item.currentTime = 0;
+      }
+    });
+
     v.play();
     setPlayingIdx(i);
   };
@@ -62,16 +44,10 @@ export default function FilmMoments() {
         </div>
       </RevealOnScroll>
 
-      <div
-        className="max-w-350 mx-auto overflow-hidden embla-grab"
-        ref={emblaRef}
-      >
-        <div className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-8 md:px-10">
+      <div className="max-w-350 mx-auto px-6 sm:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {FILMS.map((film, i) => (
-            <div
-              key={film.src}
-              className="shrink-0 w-[92vw] sm:w-[84vw] md:w-[72vw] lg:w-[68vw]"
-            >
+            <div key={film.src} className="min-w-0">
               <div className="relative aspect-video overflow-hidden bg-black group">
                 <video
                   ref={(el) => {
@@ -93,7 +69,7 @@ export default function FilmMoments() {
                       src={film.poster}
                       alt={film.label}
                       fill
-                      sizes="80vw"
+                      sizes="(min-width: 768px) 50vw, 100vw"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-all duration-700" />
