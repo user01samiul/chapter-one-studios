@@ -29,6 +29,15 @@ const DUO_META = [
   "Stillness beneath the great tree",
 ];
 const TRIO_2 = [8, 13, 11];
+const TRIO_2_META = [
+  "Hands, and the weight of a promise",
+  "A vow, spoken softly",
+  "Held close where the tide meets",
+];
+const TRIO_2_ITEMS = TRIO_2.map((frameIndex, index) => ({
+  frameIndex,
+  meta: TRIO_2_META[index],
+}));
 const HERO_CLOSE = 12;
 
 function Quote({
@@ -250,33 +259,63 @@ export default function StoryGallery() {
       {/* ── 6. Mixed triptych (different proportions) ──────────── */}
       <RevealOnScroll>
         <div className="max-w-[1500px] mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-12 gap-4 sm:gap-6">
-            <div className="col-span-12 md:col-span-5 relative aspect-[4/5] overflow-hidden bg-noir-light group">
-              <Image
-                src={FRAMES[TRIO_2[0]].src}
-                alt={FRAMES[TRIO_2[0]].alt}
-                fill
-                sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+          <div className="rounded-sm border border-gold/20 bg-gradient-to-b from-noir-light/55 to-noir-light/30 p-4 sm:p-6">
+            <div className="sm:hidden">
+              <MobileContactSheetSlider
+                slides={TRIO_2_ITEMS.map(({ frameIndex, meta }) => ({
+                  src: FRAMES[frameIndex].src,
+                  alt: FRAMES[frameIndex].alt,
+                  meta,
+                }))}
               />
             </div>
-            <div className="col-span-12 md:col-span-4 relative aspect-[3/4] overflow-hidden bg-noir-light group">
-              <Image
-                src={FRAMES[TRIO_2[1]].src}
-                alt={FRAMES[TRIO_2[1]].alt}
-                fill
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
-              />
-            </div>
-            <div className="col-span-12 md:col-span-3 relative aspect-[3/4] overflow-hidden bg-noir-light group">
-              <Image
-                src={FRAMES[TRIO_2[2]].src}
-                alt={FRAMES[TRIO_2[2]].alt}
-                fill
-                sizes="(min-width: 768px) 25vw, 100vw"
-                className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
-              />
+            <div className="hidden sm:grid sm:grid-cols-12 gap-5 lg:gap-6 items-start sm:max-w-[1080px] lg:max-w-[1160px] sm:mx-auto">
+              <div className="col-span-7 sm:max-w-[620px] lg:max-w-[660px] sm:mx-auto group bg-[#15120f] p-2 pb-4 border border-gold/25 shadow-[0_16px_32px_rgba(0,0,0,0.3)]">
+                <div className="relative aspect-4/5 overflow-hidden bg-noir-light">
+                  <Image
+                    src={FRAMES[TRIO_2_ITEMS[0].frameIndex].src}
+                    alt={FRAMES[TRIO_2_ITEMS[0].frameIndex].alt}
+                    fill
+                    sizes="(min-width: 1024px) 34vw, 100vw"
+                    className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="pt-3 px-1 text-[10px] uppercase tracking-[0.18em] text-gold/80 font-sans">
+                  {TRIO_2_ITEMS[0].meta}
+                </div>
+              </div>
+
+              <div className="col-span-5 sm:max-w-[430px] lg:max-w-[460px] sm:mx-auto flex flex-col gap-5 lg:gap-6">
+                <div className="group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] md:rotate-1 transition-transform duration-500 ease-out hover:rotate-0">
+                  <div className="relative aspect-4/3 overflow-hidden bg-noir-light">
+                    <Image
+                      src={FRAMES[TRIO_2_ITEMS[1].frameIndex].src}
+                      alt={FRAMES[TRIO_2_ITEMS[1].frameIndex].alt}
+                      fill
+                      sizes="(min-width: 1024px) 24vw, 100vw"
+                      className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="pt-3 px-1 text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
+                    {TRIO_2_ITEMS[1].meta}
+                  </div>
+                </div>
+
+                <div className="group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] md:-rotate-1 transition-transform duration-500 ease-out hover:rotate-0">
+                  <div className="relative aspect-3/4 overflow-hidden bg-noir-light">
+                    <Image
+                      src={FRAMES[TRIO_2_ITEMS[2].frameIndex].src}
+                      alt={FRAMES[TRIO_2_ITEMS[2].frameIndex].alt}
+                      fill
+                      sizes="(min-width: 1024px) 22vw, 100vw"
+                      className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="pt-3 px-1 text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
+                    {TRIO_2_ITEMS[2].meta}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
