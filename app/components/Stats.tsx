@@ -9,7 +9,13 @@ const stats = [
   { value: 3, suffix: "+", label: "Years of Experience" },
 ];
 
-function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
+function AnimatedNumber({
+  target,
+  suffix,
+}: {
+  target: number;
+  suffix: string;
+}) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
@@ -37,7 +43,7 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
           }, duration / steps);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     observer.observe(el);
@@ -45,21 +51,25 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
   }, [target]);
 
   return (
-    <span ref={ref} className="font-serif text-4xl sm:text-5xl md:text-6xl text-gold">
-      {count}{suffix}
+    <span
+      ref={ref}
+      className="font-serif text-4xl sm:text-5xl md:text-6xl text-gold"
+    >
+      {count}
+      {suffix}
     </span>
   );
 }
 
 export default function Stats() {
   return (
-    <section className="relative py-20 sm:py-28 px-6 bg-noir border-y border-cream/[0.04]">
+    <section className="relative py-20 sm:py-28 px-6 bg-noir border-y border-foreground/[0.08]">
       <div className="max-w-[1100px] mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
           {stats.map((stat, i) => (
             <div key={i} className="text-center">
               <AnimatedNumber target={stat.value} suffix={stat.suffix} />
-              <p className="mt-3 text-cream/50 text-[11px] sm:text-[12px] tracking-[0.2em] uppercase font-sans">
+              <p className="mt-3 text-foreground/55 text-[11px] sm:text-[12px] tracking-[0.2em] uppercase font-sans">
                 {stat.label}
               </p>
             </div>

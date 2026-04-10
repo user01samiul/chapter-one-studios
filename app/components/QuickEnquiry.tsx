@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function QuickEnquiry() {
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ export default function QuickEnquiry() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -33,7 +33,7 @@ export default function QuickEnquiry() {
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-noir/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/35" />
         </div>
 
         {/* Right — Form */}
@@ -45,7 +45,8 @@ export default function QuickEnquiry() {
                 Begin your <span className="italic text-gold">chapter</span>
               </h2>
               <p className="text-cream-dim text-base font-sans font-light leading-relaxed">
-                Tell us a little about your day and we&apos;ll get back to you within 24 hours.
+                Tell us a little about your day and we&apos;ll get back to you
+                within 24 hours.
               </p>
             </div>
 
@@ -57,7 +58,7 @@ export default function QuickEnquiry() {
                   value={formData.names}
                   onChange={handleChange}
                   placeholder="Your names"
-                  className="w-full bg-transparent border-b border-cream/10 py-3.5 text-cream text-base placeholder:text-cream/40 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+                  className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
                 />
               </div>
 
@@ -68,7 +69,7 @@ export default function QuickEnquiry() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email address"
-                  className="w-full bg-transparent border-b border-cream/10 py-3.5 text-cream text-base placeholder:text-cream/40 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+                  className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
                 />
               </div>
 
@@ -79,7 +80,7 @@ export default function QuickEnquiry() {
                   value={formData.date}
                   onChange={handleChange}
                   placeholder="Wedding date"
-                  className="w-full bg-transparent border-b border-cream/10 py-3.5 text-cream text-base placeholder:text-cream/40 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+                  className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
                 />
               </div>
 
@@ -90,14 +91,14 @@ export default function QuickEnquiry() {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Tell us about your day..."
-                  className="w-full bg-transparent border-b border-cream/10 py-3.5 text-cream text-base placeholder:text-cream/40 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
+                  className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
                 />
               </div>
 
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-noir py-4 transition-all duration-500 font-sans font-medium"
+                  className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
                 >
                   Send Enquiry
                 </button>

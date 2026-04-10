@@ -52,7 +52,7 @@ export default function Process() {
                 <h3 className="font-serif text-xl sm:text-2xl text-cream mb-3 italic">
                   {step.title}
                 </h3>
-                <p className="text-cream/50 text-sm leading-relaxed font-sans font-light">
+                <p className="text-foreground/62 text-sm leading-relaxed font-sans font-light">
                   {step.description}
                 </p>
               </div>

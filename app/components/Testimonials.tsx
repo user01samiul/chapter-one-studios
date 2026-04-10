@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 
 const testimonials = [
@@ -34,7 +34,7 @@ export default function Testimonials() {
         setTimeout(() => setIsTransitioning(false), 600);
       }, 500);
     },
-    [isTransitioning]
+    [isTransitioning],
   );
 
   useEffect(() => {
@@ -67,12 +67,25 @@ export default function Testimonials() {
         <div className="relative min-h-[280px] sm:min-h-[240px] flex items-center justify-center">
           {/* Left arrow */}
           <button
-            onClick={() => goTo((current - 1 + testimonials.length) % testimonials.length)}
+            onClick={() =>
+              goTo((current - 1 + testimonials.length) % testimonials.length)
+            }
             aria-label="Previous testimonial"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:translate-x-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center border border-cream/15 hover:border-gold/50 text-cream/40 hover:text-gold transition-all duration-300 z-10" style={{ borderRadius: "9999px" }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:translate-x-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center border border-foreground/15 hover:border-gold/50 text-foreground/45 hover:text-gold transition-all duration-300 z-10"
+            style={{ borderRadius: "9999px" }}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
             </svg>
           </button>
 
@@ -80,19 +93,32 @@ export default function Testimonials() {
           <button
             onClick={() => goTo((current + 1) % testimonials.length)}
             aria-label="Next testimonial"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center border border-cream/15 hover:border-gold/50 text-cream/40 hover:text-gold transition-all duration-300 z-10" style={{ borderRadius: "9999px" }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-0 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center border border-foreground/15 hover:border-gold/50 text-foreground/45 hover:text-gold transition-all duration-300 z-10"
+            style={{ borderRadius: "9999px" }}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
             </svg>
           </button>
 
           <blockquote
             className={`text-center transition-all duration-500 ease-in-out ${
-              isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+              isTransitioning
+                ? "opacity-0 translate-y-4"
+                : "opacity-100 translate-y-0"
             }`}
           >
-            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-cream/90 leading-relaxed italic px-12 sm:px-16">
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-foreground/90 leading-relaxed italic px-12 sm:px-16">
               &ldquo;{testimonials[current].quote}&rdquo;
             </p>
             <footer className="mt-8">
@@ -111,7 +137,7 @@ export default function Testimonials() {
               key={i}
               onClick={() => goTo(i)}
               aria-label={`Testimonial ${i + 1}`}
-              className="relative w-8 h-[2px] bg-cream/15 overflow-hidden transition-all duration-300"
+              className="relative w-8 h-[2px] bg-foreground/15 overflow-hidden transition-all duration-300"
             >
               <span
                 className={`absolute inset-0 bg-gold transition-transform duration-[6000ms] ease-linear origin-left ${

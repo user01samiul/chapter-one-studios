@@ -56,12 +56,12 @@ export default function FAQ() {
         <div className="space-y-0">
           {faqs.map((faq, i) => (
             <RevealOnScroll key={i} delay={i * 0.06}>
-              <div className="border-b border-cream/[0.08]">
+              <div className="border-b border-foreground/[0.12]">
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   className="w-full flex items-center justify-between py-6 text-left gap-4 group !rounded-none"
                 >
-                  <span className="font-sans text-base sm:text-lg text-cream/90 group-hover:text-cream transition-colors duration-300">
+                  <span className="font-sans text-base sm:text-lg text-foreground/90 group-hover:text-foreground transition-colors duration-300">
                     {faq.question}
                   </span>
                   <span
@@ -77,7 +77,7 @@ export default function FAQ() {
                     openIndex === i ? "max-h-60 pb-6" : "max-h-0"
                   }`}
                 >
-                  <p className="text-cream/50 text-sm sm:text-base leading-relaxed font-sans font-light pr-8">
+                  <p className="text-foreground/62 text-sm sm:text-base leading-relaxed font-sans font-light pr-8">
                     {faq.answer}
                   </p>
                 </div>

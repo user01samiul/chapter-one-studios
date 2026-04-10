@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #f5f0eb;
-  --gold: #c9a96e;
-  --gold-light: #d4bc8a;
-  --gold-dark: #a8894e;
-  --cream: #f5f0eb;
-  --cream-dim: rgba(245, 240, 235, 0.6);
-  --noir: #0a0a0a;
-  --noir-light: #141414;
-  --noir-lighter: #1a1a1a;
+  --background: #f8f5ef;
+  --foreground: #1f1b16;
+  --gold: #b38b4b;
+  --gold-light: #c9a96e;
+  --gold-dark: #8f6f3f;
+  --cream: #1f1b16;
+  --cream-dim: rgba(31, 27, 22, 0.68);
+  --noir: #fcfaf6;
+  --noir-light: #f4eee4;
+  --noir-lighter: #efe7da;
 }
 
 @theme inline {
@@ -27,7 +27,7 @@
   --color-noir-lighter: var(--noir-lighter);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
 }
 
 html {
@@ -54,8 +54,12 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleIn {
@@ -92,13 +96,23 @@ body {
 }
 
 @keyframes gentlePulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 @keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
 
 @keyframes heroTextReveal {
@@ -115,12 +129,17 @@ body {
 }
 
 @keyframes lineExpand {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 @keyframes playPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.4);
   }
   50% {
@@ -153,12 +172,24 @@ body {
 }
 
 /* Stagger delays for grid items */
-.delay-1 { animation-delay: 0.1s !important; }
-.delay-2 { animation-delay: 0.2s !important; }
-.delay-3 { animation-delay: 0.3s !important; }
-.delay-4 { animation-delay: 0.4s !important; }
-.delay-5 { animation-delay: 0.5s !important; }
-.delay-6 { animation-delay: 0.6s !important; }
+.delay-1 {
+  animation-delay: 0.1s !important;
+}
+.delay-2 {
+  animation-delay: 0.2s !important;
+}
+.delay-3 {
+  animation-delay: 0.3s !important;
+}
+.delay-4 {
+  animation-delay: 0.4s !important;
+}
+.delay-5 {
+  animation-delay: 0.5s !important;
+}
+.delay-6 {
+  animation-delay: 0.6s !important;
+}
 
 /* Elegant scrollbar */
 ::-webkit-scrollbar {
@@ -166,7 +197,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--noir);
+  background: var(--noir-light);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -188,5 +219,117 @@ button {
 /* Selection styling */
 ::selection {
   background: var(--gold);
-  color: var(--noir);
+  color: var(--foreground);
 }
+
+/* ── Storytelling carousels ───────────────────────────────────────── */
+
+@keyframes kenBurns {
+  0% {
+    transform: scale(1.02) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate(-1.5%, -1.5%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes overtureWordIn {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(6px);
+    letter-spacing: 0.12em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Embla fade-slide utility used by StoryOverture */
+.embla-fade {
+  position: relative;
+}
+.embla-fade .embla__container {
+  display: flex;
+}
+.embla-fade .embla__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Counter pill — reused by every carousel */
+.counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--foreground);
+  background: rgba(248, 245, 239, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(179, 139, 75, 0.35);
+  border-radius: 9999px;
+}
+.counter-pill--on-dark {
+  color: #f8f5ef;
+  background: rgba(15, 12, 9, 0.45);
+  border-color: rgba(201, 169, 110, 0.45);
+}
+.counter-pill .counter-pill__bar {
+  width: 1.4rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+/* Infinite marquee strip */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 70s linear infinite;
+}
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+}
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Ken-Burns drift applied to active overture slide */
+.ken-burns {
+  animation: kenBurns 9s ease-out both;
+}
+
+/* Overture headline stagger — one word per line */
+.overture-word {
+  display: block;
+  opacity: 0;
+  animation: overtureWordIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.overture-word.delay-a { animation-delay: 0.5s; }
+.overture-word.delay-b { animation-delay: 0.9s; }
+.overture-word.delay-c { animation-delay: 1.3s; }
+
+/* Drag cursors for chapter rails */
+.embla-grab { cursor: grab; }
+.embla-grab:active { cursor: grabbing; }
+

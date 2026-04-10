@@ -60,7 +60,7 @@ export default function VideoShowreel() {
             {/* Play button overlay */}
             {!isPlaying && (
               <div
-                className="absolute inset-0 flex items-center justify-center bg-noir/40 group-hover:bg-noir/30 transition-all duration-700"
+                className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/30 transition-all duration-700"
                 onClick={handlePlay}
               >
                 <div className="relative">
@@ -70,9 +70,9 @@ export default function VideoShowreel() {
                     style={{ animation: "playPulse 3s ease-in-out infinite" }}
                   />
                   {/* Play button */}
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-cream/80 flex items-center justify-center group-hover:border-gold group-hover:scale-110 transition-all duration-500 backdrop-blur-sm bg-white/5">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/80 flex items-center justify-center group-hover:border-gold group-hover:scale-110 transition-all duration-500 backdrop-blur-sm bg-white/5">
                     <svg
-                      className="w-7 h-7 sm:w-8 sm:h-8 text-cream ml-1 group-hover:text-gold transition-colors duration-500"
+                      className="w-7 h-7 sm:w-8 sm:h-8 text-white ml-1 group-hover:text-gold transition-colors duration-500"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >

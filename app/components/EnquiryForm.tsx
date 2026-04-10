@@ -13,7 +13,7 @@ export default function EnquiryForm() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -56,7 +56,7 @@ export default function EnquiryForm() {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Names */}
             <div>
-              <label className="block text-[13px] tracking-[0.2em] uppercase text-cream/70 font-sans mb-3">
+              <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                 Your Names
               </label>
               <input
@@ -65,13 +65,13 @@ export default function EnquiryForm() {
                 value={formData.names}
                 onChange={handleChange}
                 placeholder="e.g. Sarah & James"
-                className="w-full bg-transparent border border-cream/20 rounded-none bg-cream/[0.04] px-5 py-5 text-cream text-lg placeholder:text-cream/35 focus:border-gold/60 focus:bg-cream/[0.06] focus:outline-none transition-all duration-500 font-sans"
+                className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
               />
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-[13px] tracking-[0.2em] uppercase text-cream/70 font-sans mb-3">
+              <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                 Email
               </label>
               <input
@@ -80,14 +80,14 @@ export default function EnquiryForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your@email.com"
-                className="w-full bg-transparent border border-cream/20 rounded-none bg-cream/[0.04] px-5 py-5 text-cream text-lg placeholder:text-cream/35 focus:border-gold/60 focus:bg-cream/[0.06] focus:outline-none transition-all duration-500 font-sans"
+                className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
               />
             </div>
 
             {/* Date & Venue row */}
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
-                <label className="block text-[13px] tracking-[0.2em] uppercase text-cream/70 font-sans mb-3">
+                <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                   Wedding Date
                 </label>
                 <input
@@ -96,11 +96,11 @@ export default function EnquiryForm() {
                   value={formData.date}
                   onChange={handleChange}
                   placeholder="DD / MM / YYYY"
-                  className="w-full bg-transparent border border-cream/20 rounded-none bg-cream/[0.04] px-5 py-5 text-cream text-lg placeholder:text-cream/35 focus:border-gold/60 focus:bg-cream/[0.06] focus:outline-none transition-all duration-500 font-sans"
+                  className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
                 />
               </div>
               <div>
-                <label className="block text-[13px] tracking-[0.2em] uppercase text-cream/70 font-sans mb-3">
+                <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                   Venue
                 </label>
                 <input
@@ -109,14 +109,14 @@ export default function EnquiryForm() {
                   value={formData.venue}
                   onChange={handleChange}
                   placeholder="Venue name or location"
-                  className="w-full bg-transparent border border-cream/20 rounded-none bg-cream/[0.04] px-5 py-5 text-cream text-lg placeholder:text-cream/35 focus:border-gold/60 focus:bg-cream/[0.06] focus:outline-none transition-all duration-500 font-sans"
+                  className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
                 />
               </div>
             </div>
 
             {/* Message */}
             <div>
-              <label className="block text-[13px] tracking-[0.2em] uppercase text-cream/70 font-sans mb-3">
+              <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                 Tell Us About Your Day
               </label>
               <textarea
@@ -125,7 +125,7 @@ export default function EnquiryForm() {
                 onChange={handleChange}
                 rows={4}
                 placeholder="Share any details you'd like us to know..."
-                className="w-full bg-transparent border border-cream/20 rounded-none bg-cream/[0.04] px-5 py-5 text-cream text-lg placeholder:text-cream/35 focus:border-gold/60 focus:bg-cream/[0.06] focus:outline-none transition-all duration-500 font-sans resize-none"
+                className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans resize-none"
               />
             </div>
 
@@ -133,7 +133,7 @@ export default function EnquiryForm() {
             <div className="pt-6 text-center">
               <button
                 type="submit"
-                className="inline-block text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-noir px-14 py-5 transition-all duration-500 font-sans font-medium"
+                className="inline-block text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground px-14 py-5 transition-all duration-500 font-sans font-medium"
               >
                 Send Enquiry
               </button>
