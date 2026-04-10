@@ -57,7 +57,7 @@ export default function MarqueeStrip() {
                   <div className="film-sprocket film-sprocket--bottom" />
                   <button
                     type="button"
-                    className="film-photo relative h-32 sm:h-40 md:h-44 overflow-hidden bg-noir-light w-full text-left"
+                    className="film-photo relative h-32 sm:h-40 md:h-44 overflow-hidden bg-noir-light w-full text-left rounded-none!"
                     onClick={() => openLightbox(frame.src, frame.alt)}
                     aria-label={`Open photo: ${frame.alt}`}
                   >
@@ -97,7 +97,7 @@ export default function MarqueeStrip() {
                   <div className="film-sprocket film-sprocket--bottom" />
                   <button
                     type="button"
-                    className="film-photo relative h-32 sm:h-40 md:h-44 overflow-hidden bg-noir-light w-full text-left"
+                    className="film-photo relative h-32 sm:h-40 md:h-44 overflow-hidden bg-noir-light w-full text-left rounded-none!"
                     onClick={() => openLightbox(frame.src, frame.alt)}
                     aria-label={`Open photo: ${frame.alt}`}
                   >
@@ -129,14 +129,14 @@ export default function MarqueeStrip() {
           <button
             type="button"
             onClick={closeLightbox}
-            className="absolute right-4 top-4 sm:right-7 sm:top-7 px-4 py-2 text-[11px] sm:text-xs tracking-[0.22em] uppercase text-cream border border-cream/45 bg-black/35 hover:bg-black/55 transition-colors"
+            className="absolute z-30 right-4 top-4 sm:right-7 sm:top-7 px-4 py-2 text-[11px] sm:text-xs tracking-[0.22em] uppercase text-noir border border-gold/70 bg-gold/90 hover:bg-gold transition-colors rounded-none!"
             aria-label="Close image popup"
           >
             Close
           </button>
 
           <div
-            className="relative mx-auto h-full w-full max-w-350"
+            className="relative z-0 mx-auto h-full w-full max-w-350"
             onClick={(event) => event.stopPropagation()}
           >
             <Image

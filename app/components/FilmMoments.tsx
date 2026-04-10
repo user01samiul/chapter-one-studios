@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import CarouselCounter from "./CarouselCounter";
-import RevealOnScroll from "./RevealOnScroll";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { FILMS } from "../data/media";
+import RevealOnScroll from "./RevealOnScroll";
 
 export default function FilmMoments() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "center" });
-  const [selected, setSelected] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: "start",
+    containScroll: "trimSnaps",
+  });
   const [playingIdx, setPlayingIdx] = useState<number | null>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
@@ -17,7 +19,6 @@ export default function FilmMoments() {
     if (!emblaApi) return;
     const handler = () => {
       const idx = emblaApi.selectedScrollSnap();
-      setSelected(idx);
       setPlayingIdx(null);
       videoRefs.current.forEach((v, i) => {
         if (v && i !== idx) {
@@ -42,31 +43,34 @@ export default function FilmMoments() {
   };
 
   return (
-    <section id="film" className="relative bg-noir-light py-24 sm:py-36 overflow-hidden">
+    <section
+      id="film"
+      className="relative bg-noir-light py-24 sm:py-36 overflow-hidden"
+    >
       <RevealOnScroll>
-        <div className="max-w-[1400px] mx-auto px-6 sm:px-10 mb-14 sm:mb-20">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <span className="text-gold text-[11px] tracking-[0.4em] uppercase font-sans block mb-4">
-                Short Films
-              </span>
-              <h2 className="font-serif text-cream text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
-                A taste of the day,
-                <br />
-                <span className="italic text-gold">in motion.</span>
-              </h2>
-            </div>
-            <CarouselCounter current={selected + 1} total={FILMS.length} />
+        <div className="max-w-350 mx-auto px-6 sm:px-10 mb-14 sm:mb-20">
+          <div>
+            <span className="text-gold text-[11px] tracking-[0.4em] uppercase font-sans block mb-4">
+              Short Films
+            </span>
+            <h2 className="font-serif text-cream text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
+              A taste of the day,
+              <br />
+              <span className="italic text-gold">in motion.</span>
+            </h2>
           </div>
         </div>
       </RevealOnScroll>
 
-      <div className="overflow-hidden embla-grab" ref={emblaRef}>
-        <div className="flex gap-6 sm:gap-10 px-6 sm:px-20">
+      <div
+        className="max-w-350 mx-auto overflow-hidden embla-grab"
+        ref={emblaRef}
+      >
+        <div className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-8 md:px-10">
           {FILMS.map((film, i) => (
             <div
               key={film.src}
-              className="flex-shrink-0 w-[88vw] sm:w-[78vw] md:w-[72vw] lg:w-[68vw]"
+              className="shrink-0 w-[92vw] sm:w-[84vw] md:w-[72vw] lg:w-[68vw]"
             >
               <div className="relative aspect-video overflow-hidden bg-black group">
                 <video
@@ -101,9 +105,15 @@ export default function FilmMoments() {
                     >
                       <span
                         className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-white/70 flex items-center justify-center backdrop-blur-sm bg-white/5 group-hover:border-gold group-hover:scale-110 transition-all duration-500"
-                        style={{ animation: "playPulse 2.5s ease-out infinite" }}
+                        style={{
+                          animation: "playPulse 2.5s ease-out infinite",
+                        }}
                       >
-                        <svg className="w-7 h-7 sm:w-8 sm:h-8 text-white group-hover:text-gold ml-1 transition-colors duration-500" fill="currentColor" viewBox="0 0 24 24">
+                        <svg
+                          className="w-7 h-7 sm:w-8 sm:h-8 text-white group-hover:text-gold ml-1 transition-colors duration-500"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </span>
