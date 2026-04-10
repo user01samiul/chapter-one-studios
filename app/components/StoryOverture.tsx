@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import Fade from "embla-carousel-fade";
 import CarouselCounter from "./CarouselCounter";
 import RevealOnScroll from "./RevealOnScroll";
 import { FRAMES } from "../data/media";
@@ -31,48 +28,36 @@ function AccentTile({
   interval,
   offset,
   sizes,
-  aspect,
 }: {
   pool: typeof TOP;
   interval: number;
   offset: number;
   sizes: string;
-  aspect: string;
 }) {
-  const i = useTick(pool.length, interval, offset);
-  const frame = pool[i];
+  const active = useTick(pool.length, interval, offset);
   return (
-    <div className={`relative ${aspect} overflow-hidden bg-noir-light`}>
-      <Image
-        key={frame.src}
-        src={frame.src}
-        alt={frame.alt}
-        fill
-        sizes={sizes}
-        className="object-cover"
-        style={{ animation: "fadeIn 1.6s ease-out both" }}
-      />
+    <div className="relative w-full h-full overflow-hidden bg-noir-light">
+      {pool.map((frame, i) => (
+        <div
+          key={frame.src}
+          className="absolute inset-0 transition-opacity duration-[1400ms] ease-out"
+          style={{ opacity: i === active ? 1 : 0 }}
+        >
+          <Image
+            src={frame.src}
+            alt={frame.alt}
+            fill
+            sizes={sizes}
+            className="object-cover"
+          />
+        </div>
+      ))}
     </div>
   );
 }
 
 export default function StoryOverture() {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, duration: 50 },
-    [Autoplay({ delay: 4600, stopOnInteraction: false, stopOnMouseEnter: true }), Fade()]
-  );
-  const [selected, setSelected] = useState(0);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const handler = () => setSelected(emblaApi.selectedScrollSnap());
-    emblaApi.on("select", handler);
-    emblaApi.on("reInit", handler);
-    return () => {
-      emblaApi.off("select", handler);
-      emblaApi.off("reInit", handler);
-    };
-  }, [emblaApi]);
+  const active = useTick(MAIN.length, 4800, 0);
 
   return (
     <section className="relative bg-background py-20 sm:py-32 overflow-hidden">
@@ -81,34 +66,34 @@ export default function StoryOverture() {
           {/* ── Image cluster (8 cols on desktop) ─────────────────── */}
           <div className="lg:col-span-8 relative order-2 lg:order-1">
             <div className="grid grid-cols-12 gap-3 sm:gap-5">
-              {/* Big main carousel — 8 cols */}
+              {/* Big main cross-fade — 8 cols */}
               <div className="col-span-12 sm:col-span-8 relative">
                 <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden bg-noir-light">
-                  <div className="embla-fade absolute inset-0" ref={emblaRef}>
-                    <div className="embla__container h-full">
-                      {MAIN.map((frame, i) => (
-                        <div className="embla__slide h-full" key={frame.src}>
-                          <div className="relative h-full w-full overflow-hidden">
-                            <Image
-                              src={frame.src}
-                              alt={frame.alt}
-                              fill
-                              priority={i === 0}
-                              sizes="(min-width: 1024px) 55vw, 100vw"
-                              className={selected === i ? "object-cover ken-burns" : "object-cover"}
-                            />
-                          </div>
-                        </div>
-                      ))}
+                  {MAIN.map((frame, i) => (
+                    <div
+                      key={frame.src}
+                      className="absolute inset-0 transition-opacity duration-[1600ms] ease-out"
+                      style={{ opacity: i === active ? 1 : 0 }}
+                    >
+                      <Image
+                        src={frame.src}
+                        alt={frame.alt}
+                        fill
+                        priority={i === 0}
+                        sizes="(min-width: 1024px) 55vw, 100vw"
+                        className={i === active ? "object-cover ken-burns" : "object-cover"}
+                      />
                     </div>
+                  ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10">
+                    <CarouselCounter current={active + 1} total={MAIN.length} variant="dark" />
                   </div>
-                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-                    <CarouselCounter current={selected + 1} total={MAIN.length} variant="dark" />
-                  </div>
-                  <div className="absolute bottom-5 left-5 sm:bottom-7 sm:left-7 flex items-center gap-3 text-white/70">
+                  <div className="absolute bottom-5 left-5 sm:bottom-7 sm:left-7 z-10 flex items-center gap-3 text-white/80">
                     <div className="w-8 h-[1px] bg-white/60" />
                     <span className="font-serif italic text-sm sm:text-base">
-                      {MAIN[selected].alt.toLowerCase()}
+                      {MAIN[active].alt.toLowerCase()}
                     </span>
                   </div>
                 </div>
@@ -116,22 +101,20 @@ export default function StoryOverture() {
 
               {/* Two stacked accent tiles — 4 cols */}
               <div className="col-span-12 sm:col-span-4 flex flex-row sm:flex-col gap-3 sm:gap-5">
-                <div className="flex-1">
+                <div className="flex-1 relative aspect-[4/5]">
                   <AccentTile
                     pool={TOP}
                     interval={5200}
                     offset={0}
                     sizes="(min-width: 640px) 28vw, 50vw"
-                    aspect="aspect-[4/5]"
                   />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 relative aspect-[4/5]">
                   <AccentTile
                     pool={BOTTOM}
                     interval={5800}
                     offset={1}
                     sizes="(min-width: 640px) 28vw, 50vw"
-                    aspect="aspect-[4/5]"
                   />
                 </div>
               </div>
