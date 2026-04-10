@@ -269,14 +269,14 @@ export default function StoryGallery() {
                 }))}
               />
             </div>
-            <div className="hidden sm:grid sm:grid-cols-12 gap-5 lg:gap-6 items-start sm:max-w-[1080px] lg:max-w-[1160px] sm:mx-auto">
-              <div className="col-span-7 sm:max-w-[620px] lg:max-w-[660px] sm:mx-auto group bg-[#15120f] p-2 pb-4 border border-gold/25 shadow-[0_16px_32px_rgba(0,0,0,0.3)]">
+            <div className="hidden sm:grid sm:grid-cols-12 gap-5 lg:gap-6 items-start">
+              <div className="col-span-7 group bg-[#15120f] p-2 pb-4 border border-gold/25 shadow-[0_16px_32px_rgba(0,0,0,0.3)]">
                 <div className="relative aspect-4/5 overflow-hidden bg-noir-light">
                   <Image
                     src={FRAMES[TRIO_2_ITEMS[0].frameIndex].src}
                     alt={FRAMES[TRIO_2_ITEMS[0].frameIndex].alt}
                     fill
-                    sizes="(min-width: 1024px) 34vw, 100vw"
+                    sizes="(min-width: 1024px) 42vw, 100vw"
                     className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                   />
                 </div>
@@ -285,14 +285,14 @@ export default function StoryGallery() {
                 </div>
               </div>
 
-              <div className="col-span-5 sm:max-w-[430px] lg:max-w-[460px] sm:mx-auto flex flex-col gap-5 lg:gap-6">
+              <div className="col-span-5 flex flex-col gap-5 lg:gap-6">
                 <div className="group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] md:rotate-1 transition-transform duration-500 ease-out hover:rotate-0">
                   <div className="relative aspect-4/3 overflow-hidden bg-noir-light">
                     <Image
                       src={FRAMES[TRIO_2_ITEMS[1].frameIndex].src}
                       alt={FRAMES[TRIO_2_ITEMS[1].frameIndex].alt}
                       fill
-                      sizes="(min-width: 1024px) 24vw, 100vw"
+                      sizes="(min-width: 1024px) 31vw, 100vw"
                       className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                     />
                   </div>
@@ -307,7 +307,7 @@ export default function StoryGallery() {
                       src={FRAMES[TRIO_2_ITEMS[2].frameIndex].src}
                       alt={FRAMES[TRIO_2_ITEMS[2].frameIndex].alt}
                       fill
-                      sizes="(min-width: 1024px) 22vw, 100vw"
+                      sizes="(min-width: 1024px) 28vw, 100vw"
                       className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                     />
                   </div>
@@ -323,15 +323,17 @@ export default function StoryGallery() {
 
       {/* ── 7. Closing hero frame ──────────────────────────────── */}
       <RevealOnScroll variant="fade">
-        <div className="max-w-[1500px] mx-auto px-6 sm:px-10 mt-20 sm:mt-28">
-          <div className="relative aspect-[21/9] overflow-hidden bg-noir-light">
-            <Image
-              src={FRAMES[HERO_CLOSE].src}
-              alt={FRAMES[HERO_CLOSE].alt}
-              fill
-              sizes="(min-width: 1024px) 1400px, 100vw"
-              className="object-cover"
-            />
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-10 mt-16 sm:mt-24">
+          <div className="bg-[#f4efe4] p-2 sm:p-3 border border-black/15 shadow-[0_18px_36px_rgba(0,0,0,0.26)]">
+            <div className="relative aspect-16/9 overflow-hidden bg-noir-light">
+              <Image
+                src={FRAMES[HERO_CLOSE].src}
+                alt={FRAMES[HERO_CLOSE].alt}
+                fill
+                sizes="(min-width: 1024px) 70vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </RevealOnScroll>
