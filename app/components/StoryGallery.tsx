@@ -107,21 +107,6 @@ export default function StoryGallery() {
       {/* ── 2. Portrait triptych ───────────────────────────────── */}
       <RevealOnScroll>
         <div className="max-w-[1500px] mx-auto px-6 sm:px-10">
-          <div className="text-center mb-10 sm:mb-12">
-            <h3 className="font-serif text-foreground text-3xl sm:text-4xl md:text-5xl leading-[1.05] max-w-4xl mx-auto">
-              We don&apos;t count weddings
-              <br />
-              in projects.{" "}
-              <span className="italic text-gold-dark">
-                We count them in moments.
-              </span>
-            </h3>
-            <p className="mt-6 text-cream-dim text-base sm:text-lg font-sans font-light max-w-3xl mx-auto leading-relaxed">
-              Every day we capture becomes part of one ongoing story — the same
-              quiet eye, the same care, the same love of the in-between.
-              Here&apos;s a slice of it, in no particular order.
-            </p>
-          </div>
           <div className="rounded-sm border border-gold/20 bg-noir-light/35 p-4 sm:p-6">
             <div className="flex items-center justify-between text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-gold/70 font-sans mb-4 sm:mb-5">
               <span>Contact Sheet</span>
