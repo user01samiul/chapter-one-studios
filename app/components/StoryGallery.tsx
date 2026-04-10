@@ -7,6 +7,11 @@ import RevealOnScroll from "./RevealOnScroll";
 // Hand-picked indices into FRAMES for each slot in the scroll
 const HERO_OPEN = 3;
 const TRIO_1 = [6, 15, 5];
+const TRIO_1_META = [
+  "ROLL 04 / FRAME 18",
+  "ROLL 05 / FRAME 03",
+  "ROLL 05 / FRAME 19",
+];
 const PAIR_BIG = 7;
 const PAIR_SMALL = 2;
 const DUO = [4, 10];
@@ -112,21 +117,38 @@ export default function StoryGallery() {
               Here&apos;s a slice of it, in no particular order.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            {TRIO_1.map((i, k) => (
-              <div
-                key={k}
-                className="relative aspect-[4/5] overflow-hidden bg-noir-light group"
-              >
-                <Image
-                  src={FRAMES[i].src}
-                  alt={FRAMES[i].alt}
-                  fill
-                  sizes="(min-width: 640px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-            ))}
+          <div className="rounded-sm border border-gold/20 bg-noir-light/35 p-4 sm:p-6">
+            <div className="flex items-center justify-between text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-gold/70 font-sans mb-4 sm:mb-5">
+              <span>Contact Sheet</span>
+              <span>Captured in-between</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              {TRIO_1.map((i, k) => (
+                <div
+                  key={k}
+                  className={`group bg-[#f4efe4] p-2 pb-4 border border-black/15 shadow-[0_14px_30px_rgba(0,0,0,0.24)] transition-transform duration-500 ease-out ${
+                    k === 0
+                      ? "sm:-rotate-1"
+                      : k === 1
+                        ? "sm:rotate-1"
+                        : "sm:-rotate-1"
+                  } hover:rotate-0`}
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-noir-light">
+                    <Image
+                      src={FRAMES[i].src}
+                      alt={FRAMES[i].alt}
+                      fill
+                      sizes="(min-width: 640px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="pt-3 px-1 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-noir/75 font-sans">
+                    <span>{TRIO_1_META[k]}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </RevealOnScroll>
