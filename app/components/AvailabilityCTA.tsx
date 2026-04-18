@@ -23,12 +23,11 @@ export default function AvailabilityCTA() {
 
       <div className="relative z-10 max-w-2xl mx-auto text-center">
         <RevealOnScroll>
-          <span className="text-gold-light text-[11px] tracking-[0.4em] uppercase font-sans block mb-4">
-            Limited Availability
-          </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.15] mb-6">
+            Limited Availability
+            <br />
             Now booking for{" "}
-            <span className="italic text-gold">2025 &amp; 2026</span>
+            <span className="italic text-gold">2026 &amp; 2027</span>
           </h2>
           <p className="text-white/70 text-base sm:text-lg font-sans font-light max-w-lg mx-auto mb-10">
             We take on a limited number of weddings each season to give every
