@@ -157,7 +157,7 @@ export default function Footer() {
                     d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
                   />
                 </svg>
-                <span>Sydney, Australia</span>
+                <span>Shop 5/101 Clapham Rd, Sefton NSW 2162, Australia</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg
@@ -212,7 +212,7 @@ export default function Footer() {
             rights reserved.
           </span>
           <span className="text-foreground/30 text-sm font-sans">
-            Sydney Wedding Photography &amp; Videography
+            Shop 5/101 Clapham Rd, Sefton NSW 2162, Australia
           </span>
         </div>
       </div>
