@@ -14,7 +14,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover scale-105"
+        className="hero-video-bg absolute inset-0 w-full h-full object-cover"
         poster="/Landing%20Page/Photo_s%20To%20Use/Wedding%201_%20Fatima%20%26%20Mark/DSC01580.jpg"
       >
         <source

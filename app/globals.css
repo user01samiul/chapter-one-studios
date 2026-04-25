@@ -222,6 +222,43 @@ button {
   color: var(--foreground);
 }
 
+/* Native date fields can render empty date segments invisibly on mobile WebKit. */
+.date-field-native {
+  color-scheme: light;
+}
+
+.date-field-native::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+.date-field-native[data-empty="true"] {
+  color: transparent;
+}
+
+.date-field-native[data-empty="true"]::-webkit-datetime-edit,
+.date-field-native[data-empty="true"]::-webkit-date-and-time-value {
+  color: transparent;
+}
+
+.date-field-native[data-empty="false"] {
+  color: var(--foreground);
+}
+
+.date-field-native::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.65;
+}
+
+.hero-video-bg {
+  transform: scale(1.05);
+}
+
+@media (max-width: 890px) {
+  .hero-video-bg {
+    transform: scale(1.14);
+  }
+}
+
 /* ── Storytelling carousels ───────────────────────────────────────── */
 
 @keyframes kenBurns {

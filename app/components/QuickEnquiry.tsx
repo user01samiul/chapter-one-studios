@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import DateField from "./DateField";
 import { getTodayDateInputValue } from "./dateInput";
 import { submitEnquiry } from "./enquirySubmit";
 
@@ -104,13 +105,13 @@ export default function QuickEnquiry() {
               </div>
 
               <div>
-                <input
-                  type="date"
+                <DateField
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
                   min={today}
                   className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+                  hintClassName="left-0 text-base"
                 />
               </div>
 

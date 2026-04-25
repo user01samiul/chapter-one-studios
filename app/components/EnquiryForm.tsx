@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DateField from "./DateField";
 import { getTodayDateInputValue } from "./dateInput";
 import { submitEnquiry } from "./enquirySubmit";
 import RevealOnScroll from "./RevealOnScroll";
@@ -118,13 +119,13 @@ export default function EnquiryForm() {
                 <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                   Wedding Date
                 </label>
-                <input
-                  type="date"
+                <DateField
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
                   min={today}
                   className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
+                  hintClassName="left-5 text-lg"
                 />
               </div>
             </div>
