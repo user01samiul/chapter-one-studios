@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { getTodayDateInputValue } from "./dateInput";
 import { submitEnquiry } from "./enquirySubmit";
 
 export default function QuickEnquiry() {
+  const today = getTodayDateInputValue();
   const [formData, setFormData] = useState({
     names: "",
     email: "",
@@ -103,11 +105,11 @@ export default function QuickEnquiry() {
 
               <div>
                 <input
-                  type="text"
+                  type="date"
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  placeholder="Wedding date"
+                  min={today}
                   className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
                 />
               </div>

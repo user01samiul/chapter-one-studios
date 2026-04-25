@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getTodayDateInputValue } from "./dateInput";
 import { submitEnquiry } from "./enquirySubmit";
 
 interface EnquiryModalProps {
@@ -9,6 +10,7 @@ interface EnquiryModalProps {
 }
 
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
+  const today = getTodayDateInputValue();
   const [formData, setFormData] = useState({
     names: "",
     email: "",
@@ -114,71 +116,77 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           </p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <input
-              type="text"
-              name="names"
-              value={formData.names}
-              onChange={handleChange}
-              placeholder="Your names"
-              required
-              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
-            />
+        {status === "sent" ? (
+          <div className="py-8" role="status">
+            <h3 className="font-serif text-2xl text-cream mb-3">
+              Thank you for your enquiry.
+            </h3>
+            <p className="text-cream-dim text-base font-sans font-light leading-relaxed">
+              We&apos;ve received your details and will get back to you within
+              24 hours.
+            </p>
           </div>
-          <div>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email address"
-              required
-              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              placeholder="Wedding date"
-              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
-            />
-          </div>
-          <div>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={3}
-              placeholder="Tell us about your day..."
-              required
-              className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
-            />
-          </div>
-          <div className="pt-4">
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
-            >
-              {status === "sending" ? "Sending..." : "Send Enquiry"}
-            </button>
-            {statusMessage && (
-              <p
-                className={`mt-4 text-sm font-sans ${
-                  status === "error" ? "text-red-300" : "text-cream-dim"
-                }`}
-                role="status"
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <input
+                type="text"
+                name="names"
+                value={formData.names}
+                onChange={handleChange}
+                placeholder="Your names"
+                required
+                className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email address"
+                required
+                className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+              />
+            </div>
+            <div>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                min={today}
+                className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
+              />
+            </div>
+            <div>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={3}
+                placeholder="Tell us about your day..."
+                required
+                className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
+              />
+            </div>
+            <div className="pt-4">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
               >
-                {statusMessage}
-              </p>
-            )}
-          </div>
-        </form>
+                {status === "sending" ? "Sending..." : "Send Enquiry"}
+              </button>
+              {statusMessage && (
+                <p className="mt-4 text-sm font-sans text-red-300" role="status">
+                  {statusMessage}
+                </p>
+              )}
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

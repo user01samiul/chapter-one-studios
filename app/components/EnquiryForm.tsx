@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { getTodayDateInputValue } from "./dateInput";
 import { submitEnquiry } from "./enquirySubmit";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function EnquiryForm() {
+  const today = getTodayDateInputValue();
   const [formData, setFormData] = useState({
     names: "",
     email: "",
@@ -117,11 +119,11 @@ export default function EnquiryForm() {
                   Wedding Date
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
-                  placeholder="DD / MM / YYYY"
+                  min={today}
                   className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
                 />
               </div>
