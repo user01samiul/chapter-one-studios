@@ -39,6 +39,22 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const resetForm = () => {
+    setFormData({
+      names: "",
+      email: "",
+      date: "",
+      message: "",
+    });
+    setStatus("idle");
+    setStatusMessage("");
+  };
+
+  const handleClose = () => {
+    resetForm();
+    onClose();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
@@ -69,7 +85,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center px-4"
-      onClick={onClose}
+      onClick={handleClose}
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/55 backdrop-blur-md" />
@@ -85,7 +101,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       >
         {/* Close button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-foreground/45 hover:text-foreground transition-colors duration-300 !rounded-none"
           aria-label="Close"
         >
