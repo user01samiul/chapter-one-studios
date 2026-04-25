@@ -18,6 +18,7 @@ export default function Footer() {
                 src="/Landing%20Page/Logo_s/1.png"
                 alt="Chapter One Studio's"
                 fill
+                sizes="240px"
                 className="object-contain object-left invert"
               />
             </div>

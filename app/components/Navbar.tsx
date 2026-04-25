@@ -37,6 +37,7 @@ export default function Navbar() {
             src="/Landing%20Page/Logo_s/1.png"
             alt="Chapter One Studio's"
             fill
+            sizes="(max-width: 640px) 144px, 176px"
             className={`object-contain object-left transition-all duration-300 ${
               scrolled ? "invert" : ""
             }`}
