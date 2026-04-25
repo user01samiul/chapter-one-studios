@@ -9,7 +9,6 @@ export default function EnquiryForm() {
     names: "",
     email: "",
     date: "",
-    venue: "",
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
@@ -34,7 +33,6 @@ export default function EnquiryForm() {
         names: "",
         email: "",
         date: "",
-        venue: "",
         message: "",
       });
       setStatus("sent");
@@ -112,8 +110,8 @@ export default function EnquiryForm() {
               />
             </div>
 
-            {/* Date & Venue row */}
-            <div className="grid sm:grid-cols-2 gap-8">
+            {/* Date */}
+            <div>
               <div>
                 <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
                   Wedding Date
@@ -124,19 +122,6 @@ export default function EnquiryForm() {
                   value={formData.date}
                   onChange={handleChange}
                   placeholder="DD / MM / YYYY"
-                  className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
-                />
-              </div>
-              <div>
-                <label className="block text-[13px] tracking-[0.2em] uppercase text-foreground/65 font-sans mb-3">
-                  Venue
-                </label>
-                <input
-                  type="text"
-                  name="venue"
-                  value={formData.venue}
-                  onChange={handleChange}
-                  placeholder="Venue name or location"
                   className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
                 />
               </div>

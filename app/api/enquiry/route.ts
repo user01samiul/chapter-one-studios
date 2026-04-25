@@ -6,7 +6,6 @@ type EnquiryPayload = {
   names?: unknown;
   email?: unknown;
   date?: unknown;
-  venue?: unknown;
   message?: unknown;
   source?: unknown;
 };
@@ -46,7 +45,6 @@ export async function POST(request: Request) {
   const names = clean(payload.names);
   const email = clean(payload.email);
   const date = clean(payload.date);
-  const venue = clean(payload.venue);
   const message = clean(payload.message);
   const source = clean(payload.source) || "Website enquiry form";
 
@@ -95,7 +93,6 @@ export async function POST(request: Request) {
     ["Names", names],
     ["Email", email],
     ["Wedding date", date || "Not provided"],
-    ["Venue", venue || "Not provided"],
     ["Source", source],
     ["Message", message],
   ];

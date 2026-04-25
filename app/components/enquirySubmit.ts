@@ -2,7 +2,6 @@ export type EnquiryFormData = {
   names: string;
   email: string;
   date: string;
-  venue?: string;
   message: string;
 };
 
