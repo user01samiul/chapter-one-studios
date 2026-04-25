@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { submitEnquiry } from "./enquirySubmit";
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -14,6 +15,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     date: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+  const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
     if (isOpen) {
@@ -32,8 +37,29 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      await submitEnquiry(formData, "Enquiry modal");
+      setFormData({
+        names: "",
+        email: "",
+        date: "",
+        message: "",
+      });
+      setStatus("sent");
+      setStatusMessage("Thank you. Your enquiry has been sent.");
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "We could not send your enquiry right now.",
+      );
+    }
   };
 
   if (!isOpen) return null;
@@ -97,6 +123,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               value={formData.names}
               onChange={handleChange}
               placeholder="Your names"
+              required
               className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
             />
           </div>
@@ -107,6 +134,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email address"
+              required
               className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
             />
           </div>
@@ -127,16 +155,28 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               onChange={handleChange}
               rows={3}
               placeholder="Tell us about your day..."
+              required
               className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
             />
           </div>
           <div className="pt-4">
             <button
               type="submit"
+              disabled={status === "sending"}
               className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
             >
-              Send Enquiry
+              {status === "sending" ? "Sending..." : "Send Enquiry"}
             </button>
+            {statusMessage && (
+              <p
+                className={`mt-4 text-sm font-sans ${
+                  status === "error" ? "text-red-300" : "text-cream-dim"
+                }`}
+                role="status"
+              >
+                {statusMessage}
+              </p>
+            )}
           </div>
         </form>
       </div>

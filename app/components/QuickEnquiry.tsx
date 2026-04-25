@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { submitEnquiry } from "./enquirySubmit";
 
 export default function QuickEnquiry() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,10 @@ export default function QuickEnquiry() {
     date: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -17,8 +22,29 @@ export default function QuickEnquiry() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      await submitEnquiry(formData, "Quick enquiry section");
+      setFormData({
+        names: "",
+        email: "",
+        date: "",
+        message: "",
+      });
+      setStatus("sent");
+      setStatusMessage("Thank you. Your enquiry has been sent.");
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "We could not send your enquiry right now.",
+      );
+    }
   };
 
   return (
@@ -58,6 +84,7 @@ export default function QuickEnquiry() {
                   value={formData.names}
                   onChange={handleChange}
                   placeholder="Your names"
+                  required
                   className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
                 />
               </div>
@@ -69,6 +96,7 @@ export default function QuickEnquiry() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email address"
+                  required
                   className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans"
                 />
               </div>
@@ -91,6 +119,7 @@ export default function QuickEnquiry() {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Tell us about your day..."
+                  required
                   className="w-full bg-transparent border-b border-foreground/15 py-3.5 text-foreground text-base placeholder:text-foreground/45 focus:border-gold/50 focus:outline-none transition-colors duration-500 font-sans resize-none"
                 />
               </div>
@@ -98,10 +127,21 @@ export default function QuickEnquiry() {
               <div className="pt-4">
                 <button
                   type="submit"
+                  disabled={status === "sending"}
                   className="w-full text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground py-4 transition-all duration-500 font-sans font-medium"
                 >
-                  Send Enquiry
+                  {status === "sending" ? "Sending..." : "Send Enquiry"}
                 </button>
+                {statusMessage && (
+                  <p
+                    className={`mt-4 text-sm font-sans ${
+                      status === "error" ? "text-red-300" : "text-cream-dim"
+                    }`}
+                    role="status"
+                  >
+                    {statusMessage}
+                  </p>
+                )}
               </div>
             </form>
           </div>

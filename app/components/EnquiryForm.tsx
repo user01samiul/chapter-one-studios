@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitEnquiry } from "./enquirySubmit";
 import RevealOnScroll from "./RevealOnScroll";
 
 export default function EnquiryForm() {
@@ -11,6 +12,10 @@ export default function EnquiryForm() {
     venue: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -18,9 +23,30 @@ export default function EnquiryForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission will be implemented later
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      await submitEnquiry(formData, "Homepage enquiry section");
+      setFormData({
+        names: "",
+        email: "",
+        date: "",
+        venue: "",
+        message: "",
+      });
+      setStatus("sent");
+      setStatusMessage("Thank you. Your enquiry has been sent.");
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : "We could not send your enquiry right now.",
+      );
+    }
   };
 
   return (
@@ -65,6 +91,7 @@ export default function EnquiryForm() {
                 value={formData.names}
                 onChange={handleChange}
                 placeholder="e.g. Sarah & James"
+                required
                 className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
               />
             </div>
@@ -80,6 +107,7 @@ export default function EnquiryForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your@email.com"
+                required
                 className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans"
               />
             </div>
@@ -125,6 +153,7 @@ export default function EnquiryForm() {
                 onChange={handleChange}
                 rows={4}
                 placeholder="Share any details you'd like us to know..."
+                required
                 className="w-full border border-foreground/15 rounded-none bg-noir-light px-5 py-5 text-foreground text-lg placeholder:text-foreground/45 focus:border-gold/60 focus:bg-noir-lighter focus:outline-none transition-all duration-500 font-sans resize-none"
               />
             </div>
@@ -133,10 +162,21 @@ export default function EnquiryForm() {
             <div className="pt-6 text-center">
               <button
                 type="submit"
+                disabled={status === "sending"}
                 className="inline-block text-[14px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground px-14 py-5 transition-all duration-500 font-sans font-medium"
               >
-                Send Enquiry
+                {status === "sending" ? "Sending..." : "Send Enquiry"}
               </button>
+              {statusMessage && (
+                <p
+                  className={`mt-4 text-sm font-sans ${
+                    status === "error" ? "text-red-300" : "text-cream-dim"
+                  }`}
+                  role="status"
+                >
+                  {statusMessage}
+                </p>
+              )}
             </div>
           </form>
         </RevealOnScroll>
