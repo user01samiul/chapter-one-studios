@@ -63,7 +63,7 @@ export default function Hero() {
         </p>
 
         <div
-          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-4"
+          className="mt-8 sm:mt-10 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row"
           style={{
             animation:
               "heroTextReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both",
@@ -71,14 +71,14 @@ export default function Hero() {
         >
           <button
             onClick={open}
-            className="text-[12px] sm:text-[13px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground px-9 py-4 transition-all duration-500 font-sans font-medium"
+            className="w-full max-w-64 text-[12px] sm:w-auto sm:max-w-none sm:text-[13px] tracking-[0.2em] uppercase bg-gold hover:bg-gold-light text-foreground px-9 py-4 transition-all duration-500 font-sans font-medium"
             style={{ borderRadius: "9999px" }}
           >
             Enquire Now
           </button>
           <Link
             href="#work"
-            className="text-[12px] sm:text-[13px] tracking-[0.2em] uppercase text-white/65 hover:text-white border border-white/30 hover:border-white/55 px-9 py-4 transition-all duration-500 font-sans"
+            className="w-full max-w-64 text-center text-[12px] sm:w-auto sm:max-w-none sm:text-[13px] tracking-[0.2em] uppercase text-white/65 hover:text-white border border-white/30 hover:border-white/55 px-9 py-4 transition-all duration-500 font-sans"
             style={{ borderRadius: "9999px" }}
           >
             View Our Work
