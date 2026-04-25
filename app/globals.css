@@ -253,7 +253,7 @@ button {
   transform: scale(1.05);
 }
 
-@media (max-width: 890px) {
+@media (max-width: 1024px) {
   .hero-video-bg {
     transform: scale(1.14);
   }
